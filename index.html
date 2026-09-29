@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iotel Montreal</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  color:#15304a;
+  background:#fff;
+}
+a{
+  text-decoration:none;
+  color:inherit;
+}
+header{
+  height:74px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 6%;
+  background:white;
+  position:sticky;
+  top:0;
+  z-index:20;
+  box-shadow:0 1px 8px rgba(0,0,0,.08);
+}
+.logo{
+  font-size:34px;
+  font-weight:700;
+  color:#0999ad;
+  line-height:.8;
+}
+.logo small{
+  display:block;
+  font-size:10px;
+  letter-spacing:5px;
+  margin-top:8px;
+}
+nav{
+  display:flex;
+  gap:28px;
+  font-size:14px;
+}
+.bookTop{
+  background:#0aa1b5;
+  color:white;
+  border:0;
+  padding:14px 26px;
+  border-radius:28px;
+  font-weight:700;
+}
+.hero{
+  min-height:600px;
+  position:relative;
+  background:
+    linear-gradient(rgba(0,25,50,.18),rgba(0,25,50,.18)),
+    url("https://images.unsplash.com/photo-1519178614-68673b201f36?auto=format&fit=crop&w=1800&q=85")
+    center/cover no-repeat;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:60px 7%;
+  color:white;
+}
+.hero h1{
+  font-size:72px;
+  margin:10px 0 20px;
+}
+.hero h1 span{
+  color:white;
+}
+.hero h2{
+  font-size:34px;
+  margin-bottom:12px;
+}
+.hero p{
+  font-size:18px;
+}
+.searchBox{
+  margin-top:45px;
+  background:white;
+  color:#15304a;
+  display:grid;
+  grid-template-columns:1fr 1fr .8fr auto;
+  gap:0;
+  border-radius:14px;
+  overflow:hidden;
+  max-width:1050px;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+.searchItem{
+  padding:18px 20px;
+  border-right:1px solid #e3e8ec;
+}
+.searchItem label{
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+.searchItem input,
+.searchItem select{
+  width:100%;
+  border:0;
+  outline:none;
+  font-size:15px;
+  background:white;
+}
+.searchButton{
+  border:0;
+  background:#08a1b7;
+  color:white;
+  font-size:15px;
+  font-weight:700;
+  padding:0 34px;
+}
+section{
+  padding:70px 7%;
+}
+.eyebrow{
+  color:#079fb4;
+  font-weight:700;
+  font-size:13px;
+  margin-bottom:8px;
+}
+.sectionTitle{
+  font-size:36px;
+  margin-bottom:12px;
+}
+.sectionText{
+  color:#617386;
+  max-width:650px;
+  line-height:1.6;
+}
+.rooms{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:22px;
+  margin-top:35px;
+}
+.card{
+  background:#fff;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+.cardBody{
+  padding:18px;
+}
+.cardBody h3{
+  margin-bottom:12px;
+}
+.meta{
+  color:#718295;
+  font-size:13px;
+  margin-bottom:15px;
+}
+.price{
+  font-weight:700;
+  margin-bottom:14px;
+}
+.card button{
+  width:100%;
+  border:0;
+  background:#08a1b7;
+  color:white;
+  padding:12px;
+  border-radius:7px;
+  font-weight:700;
+}
+.offer{
+  min-height:300px;
+  color:white;
+  background:
+    linear-gradient(90deg,rgba(0,58,93,.8),rgba(0,58,93,.15)),
+    url("https://images.unsplash.com/photo-1519178614-68673b201f36?auto=format&fit=crop&w=1800&q=80")
+    center/cover no-repeat;
+  display:flex;
+  align-items:center;
+}
+.offer h2{
+  font-size:42px;
+  margin:8px 0 14px;
+}
+.offer p{
+  font-size:18px;
+}
+.attractionGrid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:22px;
+  margin-top:35px;
+}
+.attraction{
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 4px 18px rgba(0,0,0,.08);
+}
+.attraction img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+.attraction div{
+  padding:16px;
+}
+.attraction p{
+  color:#718295;
+  font-size:13px;
+  margin-top:7px;
+  line-height:1.4;
+}
+footer{
+  background:#edf8fb;
+  padding:38px 7%;
+  text-align:center;
+}
+footer .logo{
+  display:inline-block;
+  margin-bottom:12px;
+}
+footer p{
+  color:#617386;
+  font-size:13px;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+  padding:20px;
+}
+.modalBox{
+  width:min(550px,100%);
+  background:white;
+  border-radius:16px;
+  padding:28px;
+  position:relative;
+}
+.close{
+  position:absolute;
+  right:18px;
+  top:12px;
+  border:0;
+  background:none;
+  font-size:28px;
+}
+.summary{
+  background:#f3f8fa;
+  padding:16px;
+  border-radius:10px;
+  margin-top:15px;
+  line-height:1.9;
+}
+.total{
+  font-size:22px;
+  font-weight:700;
+  color:#078fa3;
+  margin-top:12px;
+}
+.confirm{
+  width:100%;
+  margin-top:18px;
+  background:#079fb4;
+  border:0;
+  color:white;
+  padding:14px;
+  border-radius:8px;
+  font-weight:700;
+}
+
+@media(max-width:850px){
+  header{
+    height:auto;
+    padding:16px 5%;
+  }
+  nav{
+    display:none;
+  }
+  .logo{
+    font-size:28px;
+  }
+  .bookTop{
+    padding:10px 16px;
+  }
+  .hero{
+    min-height:660px;
+    padding:45px 5%;
+  }
+  .hero h1{
+    font-size:54px;
+  }
+  .hero h2{
+    font-size:28px;
+  }
+  .searchBox{
+    grid-template-columns:1fr;
+    width:100%;
+  }
+  .searchItem{
+    border-right:0;
+    border-bottom:1px solid #e3e8ec;
+  }
+  .searchButton{
+    padding:17px;
+  }
+  .rooms,
+  .attractionGrid{
+    grid-template-columns:1fr;
+  }
+  section{
+    padding:50px 5%;
+  }
+  .offer h2{
+    font-size:34px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">iotel 🍁<small>MONTREAL</small></div>
+
+  <nav>
+    <a href="#rooms">Rooms</a>
+    <a href="#amenities">Amenities</a>
+    <a href="#attractions">Attractions</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <button class="bookTop" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">
+    BOOK NOW
+  </button>
+</header>
+
+<section class="hero">
+  <div>
+    <div style="font-weight:700">WELCOME TO</div>
+    <h1>iotel 🍁<br>MONTREAL</h1>
+    <h2>Your Home Away From Home</h2>
+    <p>Comfortable stays in the heart of Montreal</p>
+  </div>
+
+  <form class="searchBox" id="booking">
+
+    <div class="searchItem">
+      <label>CHECK-IN</label>
+      <input type="date" id="checkin" required>
+    </div>
+
+    <div class="searchItem">
+      <label>CHECK-OUT</label>
+      <input type="date" id="checkout" required>
+    </div>
+
+    <div class="searchItem">
+      <label>GUESTS</label>
+      <select id="guests">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+      </select>
+    </div>
+
+    <button class="searchButton" type="submit">
+      Check Availability
+    </button>
+
+  </form>
+</section>
+
+<section id="rooms">
+  <div class="eyebrow">OUR ROOMS</div>
+  <h2 class="sectionTitle">Modern Comfort in Montreal</h2>
+  <p class="sectionText">
+    Spacious, stylish and fully equipped apartments for short stays and extended stays.
+  </p>
+
+  <div class="rooms">
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80">
+      <div class="cardBody">
+        <h3>Studio Apartment</h3>
+        <div class="meta">1 Bed · 2 Guests · 1 Bath</div>
+        <div class="price">$120 / night</div>
+        <button onclick="bookRoom('Studio Apartment',120)">Book Now</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80">
+      <div class="cardBody">
+        <h3>1 Bedroom Apartment</h3>
+        <div class="meta">1 Bed · 4 Guests · 1 Bath</div>
+        <div class="price">$160 / night</div>
+        <button onclick="bookRoom('1 Bedroom Apartment',160)">Book Now</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=900&q=80">
+      <div class="cardBody">
+        <h3>2 Bedroom Apartment</h3>
+        <div class="meta">2 Beds · 4 Guests · 1 Bath</div>
+        <div class="price">$220 / night</div>
+        <button onclick="bookRoom('2 Bedroom Apartment',220)">Book Now</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80">
+      <div class="cardBody">
+        <h3>Penthouse Suite</h3>
+        <div class="meta">3 Beds · 6 Guests · 2 Baths</div>
+        <div class="price">$300 / night</div>
+        <button onclick="bookRoom('Penthouse Suite',300)">Book Now</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="offer" id="amenities">
+  <div>
+    <div class="eyebrow" style="color:white">SPECIAL OFFERS</div>
+    <h2>Stay Longer, Save More</h2>
+    <p>Enjoy 10% off stays of 7 nights or more.</p>
+  </div>
+</section>
+
+<section id="attractions">
+  <div class="eyebrow">MONTREAL ATTRACTIONS</div>
+  <h2 class="sectionTitle">Explore the Best of Montreal</h2>
+  <p class="sectionText">
+    Discover some of Montreal's best-known neighbourhoods and landmarks.
+  </p>
+
+  <div class="attractionGrid">
+
+    <div class="attraction">
+      <img src="https://images.unsplash.com/photo-1519178614-68673b201f36?auto=format&fit=crop&w=900&q=80">
+      <div>
+        <b>Old Montréal</b>
+        <p>Historic streets, architecture and restaurants.</p>
+      </div>
+    </div>
+
+    <div class="attraction">
+      <img src="https://images.unsplash.com/photo-1519178614-68673b201f36?auto=format&fit=crop&w=900&q=80">
+      <div>
+        <b>Mount Royal</b>
+        <p>Panoramic city views and walking trails.</p>
+      </div>
+    </div>
+
+    <div class="attraction">
+      <img src="https://images.unsplash.com/photo-1519178614-68673b201f36?auto=format&fit=crop&w=900&q=80">
+      <div>
+        <b>Notre-Dame Basilica</b>
+        <p>A landmark in the heart of Old Montréal.</p>
+      </div>
+    </div>
+
+    <div class="attraction">
+      <img src="https://images.unsplash.com/photo-1519178614-68673b201f36?auto=format&fit=crop&w=900&q=80">
+      <div>
+        <b>Jean-Talon Market</b>
+        <p>Fresh food and a classic Montréal market experience.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="logo">iotel 🍁<small>MONTREAL</small></div>
+  <p>Direct Booking Demo · iotel.club</p>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modalBox">
+    <button class="close" onclick="closeModal()">×</button>
+
+    <h2 id="roomTitle">Booking Summary</h2>
+
+    <div class="summary" id="summary"></div>
+
+    <button class="confirm" onclick="alert('Demo only — payment will be connected later.')">
+      Continue to Payment
+    </button>
+  </div>
+</div>
+
+<script>
+let selectedRoom = "Studio Apartment";
+let selectedPrice = 120;
+
+const today = new Date().toISOString().split("T")[0];
+document.getElementById("checkin").min = today;
+document.getElementById("checkout").min = today;
+
+document.getElementById("checkin").addEventListener("change", function(){
+  document.getElementById("checkout").min = this.value;
+});
+
+document.getElementById("booking").addEventListener("submit", function(e){
+  e.preventDefault();
+  showBooking(selectedRoom,selectedPrice);
+});
+
+function bookRoom(name,price){
+  selectedRoom = name;
+  selectedPrice = price;
+
+  document.getElementById("booking").scrollIntoView({
+    behavior:"smooth"
+  });
+}
+
+function showBooking(room,price){
+
+  const checkin = document.getElementById("checkin").value;
+  const checkout = document.getElementById("checkout").value;
+  const guests = document.getElementById("guests").value;
+
+  if(!checkin || !checkout){
+    alert("Please select check-in and check-out dates.");
+    return;
+  }
+
+  const start = new Date(checkin);
+  const end = new Date(checkout);
+
+  let nights = Math.round((end-start)/(1000*60*60*24));
+
+  if(nights <= 0){
+    alert("Check-out must be after check-in.");
+    return;
+  }
+
+  let roomCost = nights * price;
+  let discount = 0;
+
+  if(nights >= 7){
+    discount = roomCost * 0.10;
+  }
+
+  let cleaning = 75;
+
+  let subtotal = roomCost - discount + cleaning;
+
+  let gst = subtotal * 0.05;
+  let qst = subtotal * 0.09975;
+
+  let total = subtotal + gst + qst;
+
+  document.getElementById("roomTitle").innerText = room;
+
+  document.getElementById("summary").innerHTML =
+  "<b>Check-in:</b> " + checkin + "<br>" +
+  "<b>Check-out:</b> " + checkout + "<br>" +
+  "<b>Guests:</b> " + guests + "<br>" +
+  "<b>Nights:</b> " + nights + "<br><br>" +
+  "Accommodation: $" + roomCost.toFixed(2) + "<br>" +
+  (discount > 0 ? "Weekly discount: -$" + discount.toFixed(2) + "<br>" : "") +
+  "Cleaning fee: $" + cleaning.toFixed(2) + "<br>" +
+  "GST: $" + gst.toFixed(2) + "<br>" +
+  "QST: $" + qst.toFixed(2) + "<br>" +
+  "<div class='total'>Total: $" + total.toFixed(2) + " CAD</div>";
+
+  document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("modal").style.display = "none";
+}
+
+document.getElementById("modal").addEventListener("click", function(e){
+  if(e.target === this){
+    closeModal();
+  }
+});
+</script>
+
+</body>
+</html>
